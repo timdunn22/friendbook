@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Friend Book
+    %meta{:content => "width=device=width, initial-scale=1", :name => "viewport"}
+      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = csrf_meta_tags
+  %body
+    .container
+      %ul.nav.nav-tabs
+        %li= link_to "Posts", posts_path
+        .pull-right.user-info
+          - if current_user
+            Hello #{link_to (current_user.name || current_user.email), current_user}!
+            = link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do
+              %span.glyphicon.glyphicon-user
+            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do
+              %span.glyphicon.glyphicon-log-out
+          - else
+            = link_to "Sign In", new_user_session_path
+            = link_to "Sign Up", new_user_registration_path
+      - if flash[:notice]
+        .alert.alert-success
+          %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+          = flash[:notice]
+      - elsif flash[:error]
+        .alert.alert-danger
+          %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+          = flash[:error]
+      - elsif flash[:alert]
+        .alert.alert-warning
+          %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+          = flash[:alert]
+      = yield
