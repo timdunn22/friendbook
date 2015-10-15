@@ -7,7 +7,6 @@
         - comment.errors.full_messages.each do |msg|
           %li= msg
   .form-group
-    = f.label :content
     = f.text_field :content, class: 'form-control', placeholder: "Enter comment body"
   .form-group
     = f.submit "Create a comment", class: 'btn btn-success'

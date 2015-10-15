@@ -1,4 +1,5 @@
-- if @like.blank?
-  = link_to "Like", post_likes_path(post_id: @post.id),remote:true, method: :post
-- else
-  = link_to "Unlike", remote: true, method: :delete
+.likes
+  - if @like.blank?
+    = render partial:'likes/create'
+  - else
+    = render partial: 'likes/delete'

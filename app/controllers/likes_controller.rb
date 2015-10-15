@@ -1,7 +1,8 @@
 class LikesController < ApplicationController
   def create
-    @post = Post.find(params[:id])
-    @like = current_user.likes.build(likes_params)
+   post_id = params[:post_id]
+   @post = Post.find_by(id: post_id)
+    @like = current_user.likes.build(post_id: post_id)
     if @like.save
       flash[:notice] = "You like the post #{@post.title}."
     else
@@ -14,7 +15,8 @@ class LikesController < ApplicationController
     end
   end
   def destroy
-    @post = Post.find(params[:id])
+    post_id = params[:post_id]
+    @post = Post.find_by(id: post_id)
     @like = @post.likes.find(params[:id])
     if @like.destroy
       flash[:notice] = "You have unliked the #{@post.title} post"
@@ -30,6 +32,6 @@ class LikesController < ApplicationController
   end
   private
   def likes_params
-    params.require(:like).permit(:post_id, :user_id)
+    params.require(:like).permit(:post_id)
   end
 end

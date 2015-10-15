@@ -15,7 +15,7 @@
   - if post.image?
     .form-group
       %p Current Post Image
-      = image_tag( post.image)
+      = image_tag( post.image.post)
   .form-group
     = f.label :image
     = f.file_field :image

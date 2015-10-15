@@ -10,7 +10,7 @@
     .row
       .col-md-8
         %h2 Comments:
-      .js-comments
-        = render partial: 'comments/comment', collection: @post.comments
+        .js-comments
+          = render partial: 'comments/comment', collection: @post.comments
       .new-comment
         = render partial: 'comments/form', locals: { post: @post, comment: @post.comments.new }
