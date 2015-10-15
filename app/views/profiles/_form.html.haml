@@ -1,0 +1,15 @@
+= form_for @profile do |f|
+  .form-group
+    = f.label "Please write your interests"
+    %p
+    = f.text_area :interests
+  .form-group
+    = f.label "What's your birthday?", :birthday
+    %p
+    = f.date_select :birthday
+  .form-group
+    = f.label "Where are you now?", :location
+    %p
+    = f.text_field :location
+  .form-group
+    = f.submit "Save my profile information"

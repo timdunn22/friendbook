@@ -34,7 +34,9 @@ gem 'devise', '~> 3.4.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+group :development do
+ gem "better_errors"
+end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

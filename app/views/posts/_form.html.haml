@@ -1,0 +1,23 @@
+= form_for [post] do |f|
+  - if post.errors.any?
+    .alert.alert-danger
+      %h4
+        There are #{pluralize(post.errors.count, "error")}.
+      %ul
+        - post.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', placeholder: "Enter post title"
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter post body"
+  - if post.image?
+    .form-group
+      %p Current Post Image
+      = image_tag( post.image)
+  .form-group
+    = f.label :image
+    = f.file_field :image
+  .form-group
+    = f.submit "Save", class: 'btn btn-success'

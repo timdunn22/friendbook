@@ -1,2 +1,8 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+%h1= @user.name
+%p= "Email: #{@user.email}"
+- unless @user.profile.interests.blank?
+  %h3="My interests are #{@user.profile.interests}"
+- unless @user.profile.birthday.blank?
+  %h3= "My birthday is #{@user.profile.birthday.to_formatted_s(:long_ordinal)}"
+- unless @user.profile.location.blank?
+  %h3= "I live in #{@user.profile.location}"

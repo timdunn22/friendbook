@@ -1,0 +1,13 @@
+.media.row
+  .span1
+    = image_tag(post.image.post.url) if post.image?
+  .span7
+    .media-body
+      %h4.media-heading
+        = link_to (post.title), [post]
+      %small
+        submitted #{time_ago_in_words(post.created_at)} ago by
+        \#{post.user.name}
+        %br
+          = post.comments.count
+          Comments

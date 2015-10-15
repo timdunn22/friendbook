@@ -1,0 +1,6 @@
+%h1 Create a new friendship
+= form_for @friendship do |f|
+  .form-group
+    = f.collection_select :friend_id,@friendships, :id, :name
+  .form-group
+    = f.submit "Add as a friend"

@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
-  resources :comments
+
+
+
+
+  resources :profiles
+
+  get 'friendships/newcreate'
+
+  get 'friendships/destroy'
 
   root 'welcome#index'
-  resources :posts
+  resources :posts do
+    resources :comments
+    resources :likes
+  end
 
   get 'users/index'
 
@@ -12,6 +23,7 @@ Rails.application.routes.draw do
   get '/register' => 'devise/registrations#new', :as => :new_user_registration
   end
   resources :users
+  resources :friendships
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

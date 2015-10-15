@@ -9,7 +9,13 @@
   %body
     .container
       %ul.nav.nav-tabs
+        %li= link_to "Home", root_path
         %li= link_to "Posts", posts_path
+        - if current_user.present?
+          - if current_user.profile
+            %li= link_to "Edit my profile", edit_profile_path(current_user.profile)
+          - else
+            %li= link_to "Make a profile", new_profile_path
         .pull-right.user-info
           - if current_user
             Hello #{link_to (current_user.name || current_user.email), current_user}!
